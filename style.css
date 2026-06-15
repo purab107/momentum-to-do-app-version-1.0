@@ -1,0 +1,10 @@
+#canvas-box{
+    display: flexbox;
+    justify-items: center;
+    color: aqua;
+}
+
+#border-line{
+    color: white;
+    background-color: white;
+}

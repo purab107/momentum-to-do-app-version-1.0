@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: black; color: white;">
+    <div id="canvas-box">
+
+        <div class="heading-text">
+            <h1>Momentum</h1>
+            <h2>Your Personal To Do App</h2>
+        </div>
+
+        <form id="user-input-field">
+            <input type="text" id="user-input" placeholder="Enter a task...">
+
+            <button type="submit" id="input-button">
+                Add Task
+            </button>
+        </form>
+
+        <div id="task-list">
+
+            <h2>Task List</h2>
+
+            <table class="task-list-table">
+                <thead>
+                    <tr>
+                        <th>Done</th>
+                        <th>Task</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="taskTableBody">
+                </tbody>
+            </table>
+
+        </div>
+
+        <div id="task-info">
+            <h2>
+                Total Tasks:
+                <span id="totalTasks">0</span>
+            </h2>
+
+            <h2>
+                Tasks Done:
+                <span id="completedTasks">0</span>
+            </h2>
+        </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
