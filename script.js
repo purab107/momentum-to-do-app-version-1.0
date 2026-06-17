@@ -1,8 +1,12 @@
 const form = document.querySelector('#user-input-field')
 const taskList = document.querySelector('#task-list-tree')
 const resetButton = document.querySelector('#reset-button')
+const totalTask = document.querySelector('#totalTasks')
+const completedTask = document.querySelector('#completedTasks')
 
 let taskArrayList = []
+let totalTasksCounter;
+let taskDoneCounter;
 
 // array -> objects - > { taskname : <yourtask>, completed: true/false}
 
@@ -16,6 +20,9 @@ function saveTaskInMemory() {
 
 resetButton.addEventListener('click', () => {
     localStorage.removeItem('tasks');
+    taskList.replaceChildren();
+    taskArrayList = []
+    taskCounters()
 })
 
 // form event listener -> collects user input
@@ -32,8 +39,10 @@ form.addEventListener('submit', (event) => {
     taskArrayList.push(taskObject)
     // COMMENT THIS
     test()
+
     saveTaskInMemory()
     createTaskNode(taskObject)
+    taskCounters()
 })
 
 // creates a task node -> check box | task name | delete button
@@ -63,6 +72,9 @@ function createTaskNode(taskObject) {
 
     // appending the nodes to the main tree
     taskList.appendChild(li);
+    crossTheTask(taskName, taskObject)
+
+    
 }
 
 function deleteTaskNode(taskNode, taskId) {
@@ -71,6 +83,7 @@ function deleteTaskNode(taskNode, taskId) {
     taskList.removeChild(taskNode)
     deleteTaskFromLocalStorage(taskId)
     console.log('node removed');
+    taskCounters()
 }
 
 function deleteTaskFromLocalStorage(taskId) {
@@ -95,20 +108,33 @@ function test() {
 }
 
 
-function crossTheTask() { }
+function crossTheTask(taskName, taskObject) {
+    console.log("called", taskObject.completed);
+    if(taskObject.completed){
+        taskName.style.textDecoration = 'line-through';
+        console.log(taskName.style.textDecoration);
+    }
+}
+
+function checkBoxLogic(){
+
+}
+
+function taskCounters() {
+    totalTasksCounter = taskArrayList.length
+    totalTask.textContent = totalTasksCounter
+}
 
 function renderTaskList() {
 
     const storedTasks = localStorage.getItem('tasks');
 
-    taskArrayList = storedTasks
-        ? JSON.parse(storedTasks)
-        : [];
+    taskArrayList = storedTasks ? JSON.parse(storedTasks) : [];
 
     taskArrayList.forEach(task => {
         createTaskNode(task);
     });
-
 }
 
 renderTaskList()
+taskCounters()
