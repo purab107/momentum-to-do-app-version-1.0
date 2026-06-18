@@ -5,8 +5,8 @@ const totalTask = document.querySelector('#totalTasks')
 const completedTask = document.querySelector('#completedTasks')
 
 let taskArrayList = []
-let totalTasksCounter;
-let taskDoneCounter;
+let totalTasksCounter = 0;
+let taskDoneCounter = 0;
 
 // array -> objects - > { taskname : <yourtask>, completed: true/false}
 
@@ -29,6 +29,7 @@ resetButton.addEventListener('click', () => {
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const taskName = document.getElementById('user-input').value
+    document.getElementById('user-input').value = '';
 
     const taskObject = {
         id: Date.now(),
@@ -53,8 +54,20 @@ function createTaskNode(taskObject) {
     const checkBox = document.createElement('input')
     checkBox.type = 'checkbox'
     checkBox.id = 'checkTaskDone'
-    checkBox.checked = taskObject.completed
+    checkBox.checked = !!taskObject.completed;
     li.appendChild(checkBox)
+
+    checkBox.addEventListener("change", (event) => {
+        if(event.target.checked){
+            taskObject.completed = checkBox.checked
+            crossTheTask(taskName, taskObject)
+            saveTaskInMemory()
+        } else if(!event.target.checked){
+            taskObject.completed = checkBox.checked
+            crossTheTask(taskName, taskObject)
+            saveTaskInMemory()
+        }
+    })
 
     // creating task name
     const taskName = document.createElement('span')
@@ -72,9 +85,8 @@ function createTaskNode(taskObject) {
 
     // appending the nodes to the main tree
     taskList.appendChild(li);
-    crossTheTask(taskName, taskObject)
 
-    
+    crossTheTask(taskName, taskObject)
 }
 
 function deleteTaskNode(taskNode, taskId) {
@@ -110,19 +122,29 @@ function test() {
 
 function crossTheTask(taskName, taskObject) {
     console.log("called", taskObject.completed);
-    if(taskObject.completed){
+    if (taskObject.completed) {
         taskName.style.textDecoration = 'line-through';
         console.log(taskName.style.textDecoration);
+        taskCounters()
+    } else {
+        taskName.style.textDecoration = 'none';
+        taskCounters()
     }
 }
 
-function checkBoxLogic(){
-
-}
 
 function taskCounters() {
     totalTasksCounter = taskArrayList.length
     totalTask.textContent = totalTasksCounter
+    taskArrayList.forEach((task) => {
+        if(task.completed){
+            taskDoneCounter++;
+        }else{
+            taskDoneCounter--;
+        }
+    })
+    completedTask.textContent = taskDoneCounter
+
 }
 
 function renderTaskList() {
@@ -137,4 +159,3 @@ function renderTaskList() {
 }
 
 renderTaskList()
-taskCounters()
