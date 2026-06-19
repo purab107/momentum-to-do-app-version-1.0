@@ -31,19 +31,24 @@ form.addEventListener('submit', (event) => {
     const taskName = document.getElementById('user-input').value
     document.getElementById('user-input').value = '';
 
-    const taskObject = {
-        id: Date.now(),
-        taskName,
-        completed: false
-    };
+    if (taskName === "" || taskName === " ") {
+        alert("enter a valid task name")
 
-    taskArrayList.push(taskObject)
-    // COMMENT THIS
-    test()
+    } else {
+        const taskObject = {
+            id: Date.now(),
+            taskName,
+            completed: false
+        };
 
-    saveTaskInMemory()
-    createTaskNode(taskObject)
-    taskCounters()
+        taskArrayList.unshift(taskObject)
+        // COMMENT THIS
+        test()
+
+        saveTaskInMemory()
+        createTaskNode(taskObject)
+        taskCounters()
+    }
 })
 
 // creates a task node -> check box | task name | delete button
@@ -53,20 +58,13 @@ function createTaskNode(taskObject) {
     // creating the check box
     const checkBox = document.createElement('input')
     checkBox.type = 'checkbox'
-    checkBox.id = 'checkTaskDone'
     checkBox.checked = !!taskObject.completed;
     li.appendChild(checkBox)
 
     checkBox.addEventListener("change", (event) => {
-        if(event.target.checked){
-            taskObject.completed = checkBox.checked
-            crossTheTask(taskName, taskObject)
-            saveTaskInMemory()
-        } else if(!event.target.checked){
-            taskObject.completed = checkBox.checked
-            crossTheTask(taskName, taskObject)
-            saveTaskInMemory()
-        }
+        taskObject.completed = checkBox.checked;
+        crossTheTask(taskName, taskObject);
+        saveTaskInMemory();
     })
 
     // creating task name
@@ -84,7 +82,7 @@ function createTaskNode(taskObject) {
     })
 
     // appending the nodes to the main tree
-    taskList.appendChild(li);
+    taskList.prepend(li);
 
     crossTheTask(taskName, taskObject)
 }
@@ -134,16 +132,18 @@ function crossTheTask(taskName, taskObject) {
 
 
 function taskCounters() {
-    totalTasksCounter = taskArrayList.length
-    totalTask.textContent = totalTasksCounter
-    taskArrayList.forEach((task) => {
-        if(task.completed){
+    totalTasksCounter = taskArrayList.length;
+    totalTask.textContent = totalTasksCounter;
+
+    taskDoneCounter = 0;
+
+    taskArrayList.forEach(task => {
+        if (task.completed) {
             taskDoneCounter++;
-        }else{
-            taskDoneCounter--;
         }
-    })
-    completedTask.textContent = taskDoneCounter
+    });
+
+    completedTask.textContent = taskDoneCounter;
 
 }
 

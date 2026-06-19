@@ -1,9 +1,15 @@
 #canvas-box{
-    display: flexbox;
-    justify-items: center;
-    color: aqua;
+    width: 300px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 30px;
+    color: red;
 }
 
+.heading-text{
+    margin-top: 0px;
+    padding-top: 0px;
+}
 #border-line{
     color: white;
     background-color: white;
