@@ -18,38 +18,41 @@ function saveTaskInMemory() {
     console.log('elements stored in the local storage')
 }
 
-resetButton.addEventListener('click', () => {
-    localStorage.removeItem('tasks');
-    taskList.replaceChildren();
-    taskArrayList = []
-    taskCounters()
-})
+function taskResetButton() {
+    resetButton.addEventListener('click', () => {
+        localStorage.removeItem('tasks');
+        taskList.replaceChildren();
+        taskArrayList = []
+        taskCounters()
+    })
+}
 
 // form event listener -> collects user input
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const taskName = document.getElementById('user-input').value
-    document.getElementById('user-input').value = '';
+function takeTheUserInput() {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const taskName = document.getElementById('user-input').value.trim()
+        document.getElementById('user-input').value = '';
 
-    if (taskName === "" || taskName === " ") {
-        alert("enter a valid task name")
-
-    } else {
+        if (!taskName) {
+            alert("enter a valid task name")
+            return
+        }
         const taskObject = {
             id: Date.now(),
             taskName,
             completed: false
         };
 
-        taskArrayList.unshift(taskObject)
+        taskArrayList.push(taskObject)
         // COMMENT THIS
         test()
 
         saveTaskInMemory()
         createTaskNode(taskObject)
         taskCounters()
-    }
-})
+    })
+}
 
 // creates a task node -> check box | task name | delete button
 function createTaskNode(taskObject) {
@@ -158,4 +161,12 @@ function renderTaskList() {
     });
 }
 
-renderTaskList()
+
+function init() {
+    renderTaskList()
+    taskResetButton()
+    takeTheUserInput()
+}
+
+
+init()
