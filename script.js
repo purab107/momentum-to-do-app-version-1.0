@@ -60,6 +60,7 @@ function createTaskNode(taskObject) {
 
     // creating the check box
     const checkBox = document.createElement('input')
+    checkBox.id = 'new-checkbox'
     checkBox.type = 'checkbox'
     checkBox.checked = !!taskObject.completed;
     li.appendChild(checkBox)
@@ -72,11 +73,13 @@ function createTaskNode(taskObject) {
 
     // creating task name
     const taskName = document.createElement('span')
+    taskName.id = 'task-name'
     taskName.textContent = taskObject.taskName;
     li.appendChild(taskName)
 
     // creating delete button
     const dltButton = document.createElement('button')
+    dltButton.id = 'delete-button'
     dltButton.textContent = "Delete";
     li.appendChild(dltButton)
 

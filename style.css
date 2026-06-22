@@ -1,16 +1,145 @@
+body {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  min-height: 100vh;       /* Makes body take up the full screen height */
+  margin: 0;               /* Removes default space around the page */
+}
+
 #canvas-box{
-    width: 300px;
-    padding: 30px;
-    background-color: white;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
     border-radius: 30px;
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .heading-text{
-    margin-top: 0px;
-    padding-top: 0px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    text-align: left;
+    border-bottom: solid 1px black;
+    padding-left: 20px;
 }
-#border-line{
+
+#input-div{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 1px black;
+}
+
+#user-input{
+    height: 40px;
+    width: 270px;
+}
+
+#input-button{
+    background-color: rgb(122, 3, 233);
     color: white;
-    background-color: white;
+    font-weight: bold;
+    border: 0px;
+    padding: 15px;
+}
+
+#task-list{
+    height: 300px;
+    border-bottom: solid 1px black;
+    overflow-y: auto;
+    display: flex;
+    align-content: flex-start;
+    vertical-align: top;
+}
+
+#task-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+#task-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#task-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+
+  /* Creates spacing around the thumb */
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+#task-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  background-clip: content-box;
+}
+
+#task-list-tree{
+    padding: 0px;
+    margin-block-start: 0px;
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
+    width: 100%;
+}
+
+li{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px 15px 15px;
+    border-bottom: solid 1px black;
+}
+
+
+#new-checkbox{
+    accent-color: #eb2525; 
+    transform: scale(1.2); 
+    width:26px;
+    height:26px;
+    margin-right: 20px;
+}
+
+#delete-button{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    padding: 10px;
+}
+
+#task-name{
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin-right: 15px;
+}
+
+#bottom-div{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#task-info{
+    margin-left: 20px;
+}
+
+
+#reset-button{
+    background-color: rgb(122, 3, 233);
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    font-size: 15px;
+    padding: 20px;
 }

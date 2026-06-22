@@ -12,40 +12,40 @@
     <div id="canvas-box">
 
         <div class="heading-text">
-            <p>Momentum</p>
-            <p>Your Personal To Do App</p>
+            <p style="padding: 0px; margin: 0px;">Momentum | Your Personal To Do App</p>
         </div>
 
-        <form id="user-input-field">
-            <input type="text" id="user-input" placeholder="Enter a task...">
+        <div id="input-div">
+            <form id="user-input-field">
+                <input type="text" id="user-input" placeholder="Enter a task...">
 
-            <button type="submit" id="input-button">
-                Add Task
-            </button>
-        </form>
-
-        <div id="task-list" style="max-height: 240px; overflow-y: auto;">
-
-            <h2>Task List</h2>
-
-            <ul id="task-list-tree" style="margin: 0; list-style: none;"></ul>
-
+                <button type="submit" id="input-button">
+                    Add Task
+                </button>
+            </form>
         </div>
 
-        <div id="task-info">
-            <p>
-                Total Tasks:
-                <span id="totalTasks">0</span>
-            </p>
-
-            <p>
-                Tasks Done:
-                <span id="completedTasks">0</span>
-            </p>
+        <div id="task-list">
+            <ul id="task-list-tree"></ul>
         </div>
 
-        <div>
-            <button id="reset-button">Reset To Do List</button>
+        <div id="bottom-div">
+            <div id="task-info">
+                <p>
+                    Total Tasks:
+                    <span id="totalTasks">0</span>
+                </p>
+
+                <p>
+                    Tasks Done:
+                    <span id="completedTasks">0</span>
+                </p>
+            </div>
+
+            <div id="reset-btn-div">
+                <button id="reset-button">Clear All</button>
+            </div>
+
         </div>
 
     </div>
