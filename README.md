@@ -22,11 +22,19 @@ It is the most basic version of the To Do App which allows user to add tasks, vi
 ✅ All deliverables have been successfully met.
 
 ### Snapshots
-<img src="snapshots/phase-1-snappie.png" width="300">   
+<img src="snapshots/phase-1-snappie.png" width="300">
+
+### Data Flow Diagram :
+<img src="snapshots/phase-1-diagram.png" width="400">   
 
 ---
 # Phase 2 : Version 1.1
 It is the second phase of the to do app which adds additional features upon the existing features, making the app have better User Experience and Usability.
+
+### Objectives :
+- Improve on the previous deployed version of the app
+- Add more usable functionality in the app
+- Improve the UI of the app
 
 ### Deliverables :
 - Make a simple UI, single page application
@@ -36,3 +44,6 @@ It is the second phase of the to do app which adds additional features upon the 
 - Improve input validation feedback into modern design
 - When no tasks are there, show a message instead of blank block
 - More minimal but modern design
+
+### Snapshots
+
