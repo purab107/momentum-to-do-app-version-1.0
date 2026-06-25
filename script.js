@@ -77,6 +77,20 @@ function createTaskNode(taskObject) {
     taskName.textContent = taskObject.taskName;
     li.appendChild(taskName)
 
+    // taskName.addEventListener('click', () => {
+    //     const input = document.createElement('input')
+    //     input.type = "text"
+    //     input.value = taskName.textContent
+
+    //     taskName.replaceWith(input)
+    // })
+
+    // const editButton = document.createElement('button')
+    // editButton.id = 'edit-button'
+    // editButton.textContent = "edit";
+    // li.appendChild(editButton)
+
+
     // creating delete button
     const dltButton = document.createElement('button')
     dltButton.id = 'delete-button'
