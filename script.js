@@ -77,6 +77,7 @@ function createTaskNode(taskObject) {
     taskName.textContent = taskObject.taskName;
     li.appendChild(taskName)
 
+    // creating pop up
     const popup = document.createElement("div");
     popup.className = "tooltip";
     popup.textContent = "Click On Task To Edit It";
@@ -90,12 +91,6 @@ function createTaskNode(taskObject) {
 
     //     taskName.replaceWith(input)
     // })
-
-    // const editButton = document.createElement('button')
-    // editButton.id = 'edit-button'
-    // editButton.textContent = "edit";
-    // li.appendChild(editButton)
-
 
     // creating delete button
     const dltButton = document.createElement('button')
