@@ -114,7 +114,7 @@ li:hover{
 }
 
 
-#new-checkbox{
+.new-checkbox{
     accent-color: rgb(52, 52, 255); 
     transform: scale(1.2); 
     width:26px;
@@ -122,11 +122,11 @@ li:hover{
     margin-right: 20px;
 }
 
-#new-checkbox:hover{
+.new-checkbox:hover{
     cursor: pointer;
 }
 
-#delete-button{
+.delete-button{
     /* background-color: rgb(255, 48, 48); */
     color: rgb(255, 48, 48);
     font-weight: bold;
@@ -135,19 +135,54 @@ li:hover{
     padding: 10px;
 }
 
-#delete-button:hover{
+.delete-button:hover{
     background-color: rgb(255, 48, 48);
     color: white;
     cursor: pointer;
 }
 
-#task-name{
+.task-name{
     flex: 1;
     min-width: 0;
     overflow-wrap: break-word;
     word-wrap: break-word;
     font-weight: bold;
     margin-right: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip{
+    position: absolute;
+
+    /* Place it just below the task name */
+    top: 140%;
+    left: 30%;
+    transform: translateX(-50%);
+
+    /* Appearance */
+    background-color: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+
+    /* Hide initially */
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.2s ease;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.task-name:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
 }
 
 #bottom-div{

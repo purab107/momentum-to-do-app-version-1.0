@@ -60,7 +60,7 @@ function createTaskNode(taskObject) {
 
     // creating the check box
     const checkBox = document.createElement('input')
-    checkBox.id = 'new-checkbox'
+    checkBox.className = 'new-checkbox'
     checkBox.type = 'checkbox'
     checkBox.checked = !!taskObject.completed;
     li.appendChild(checkBox)
@@ -73,9 +73,15 @@ function createTaskNode(taskObject) {
 
     // creating task name
     const taskName = document.createElement('span')
-    taskName.id = 'task-name'
+    taskName.className = 'task-name'
     taskName.textContent = taskObject.taskName;
     li.appendChild(taskName)
+
+    const popup = document.createElement("div");
+    popup.className = "tooltip";
+    popup.textContent = "Click On Task To Edit It";
+
+    taskName.appendChild(popup);
 
     // taskName.addEventListener('click', () => {
     //     const input = document.createElement('input')
@@ -93,7 +99,7 @@ function createTaskNode(taskObject) {
 
     // creating delete button
     const dltButton = document.createElement('button')
-    dltButton.id = 'delete-button'
+    dltButton.className = 'delete-button'
     dltButton.textContent = "Delete";
     li.appendChild(dltButton)
 
