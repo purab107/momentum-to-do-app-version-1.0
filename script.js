@@ -105,7 +105,7 @@ function createTaskNode(taskObject) {
     // appending the nodes to the main tree
     taskList.prepend(li);
 
-    crossTheTask(taskName, taskObject)
+    crossTheTask(taskName, taskObject, li)
 }
 
 function deleteTaskNode(taskNode, taskId) {
@@ -139,10 +139,12 @@ function test() {
 }
 
 
-function crossTheTask(taskName, taskObject) {
+function crossTheTask(taskName, taskObject, li) {
     console.log("called", taskObject.completed);
     if (taskObject.completed) {
         taskName.style.textDecoration = 'line-through';
+        taskName.style.textDecorationThickness = '0.2rem';
+        taskName.style.opacity = '0.5';
         console.log(taskName.style.textDecoration);
         taskCounters()
     } else {
