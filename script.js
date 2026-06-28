@@ -90,6 +90,12 @@ function createTaskNode(taskObject) {
     //     input.value = taskName.textContent
 
     //     taskName.replaceWith(input)
+
+    //     input.addEventListener('enter', (e) => {
+    //         e.preventDefault()
+    //         const name = e.target
+    //         console.log(name)
+    //     })
     // })
 
     // creating delete button
