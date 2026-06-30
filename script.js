@@ -56,62 +56,81 @@ function takeTheUserInput() {
 
 // creates a task node -> check box | task name | delete button
 function createTaskNode(taskObject) {
-    const li = document.createElement('li')
+    const li = document.createElement("li");
 
-    // creating the check box
-    const checkBox = document.createElement('input')
-    checkBox.className = 'new-checkbox'
-    checkBox.type = 'checkbox'
+    // Creating the checkbox
+    const checkBox = document.createElement("input");
+    checkBox.className = "new-checkbox";
+    checkBox.type = "checkbox";
     checkBox.checked = !!taskObject.completed;
-    li.appendChild(checkBox)
+    li.appendChild(checkBox);
 
-    checkBox.addEventListener("change", (event) => {
-        taskObject.completed = checkBox.checked;
-        crossTheTask(taskName, taskObject);
-        saveTaskInMemory();
-    })
+    // Creating task name
+    const taskName = document.createElement("span");
+    taskName.className = "task-name";
 
-    // creating task name
-    const taskName = document.createElement('span')
-    taskName.className = 'task-name'
-    taskName.textContent = taskObject.taskName;
-    li.appendChild(taskName)
+    // Span for actual task text
+    const taskText = document.createElement("span");
+    taskText.className = "task-text";
+    taskText.textContent = taskObject.taskName;
+    taskName.appendChild(taskText);
 
-    // creating pop up
+    // Creating popup
     const popup = document.createElement("div");
     popup.className = "tooltip";
     popup.textContent = "Click On Task To Edit It";
-
     taskName.appendChild(popup);
 
-    // taskName.addEventListener('click', () => {
-    //     const input = document.createElement('input')
-    //     input.type = "text"
-    //     input.value = taskName.textContent
+    li.appendChild(taskName);
 
-    //     taskName.replaceWith(input)
+    // Set initial state
+    taskName.style.cursor = checkBox.checked ? "not-allowed" : "pointer";
+    popup.style.display = checkBox.checked ? "none" : "";
 
-    //     input.addEventListener('enter', (e) => {
-    //         e.preventDefault()
-    //         const name = e.target
-    //         console.log(name)
-    //     })
-    // })
+    // Checkbox functionality
+    checkBox.addEventListener("change", () => {
+        taskObject.completed = checkBox.checked;
 
-    // creating delete button
-    const dltButton = document.createElement('button')
-    dltButton.className = 'delete-button'
+        crossTheTask(taskName, taskObject);
+        saveTaskInMemory();
+
+        // Disable/Enable editing
+        taskName.style.cursor = checkBox.checked ? "not-allowed" : "pointer";
+        popup.style.display = checkBox.checked ? "none" : "";
+    });
+
+    // Edit task name
+    taskName.addEventListener("click", () => {
+        // Don't allow editing if completed
+        if (checkBox.checked) return;
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = taskText.textContent;
+
+        taskName.replaceWith(input);
+        input.focus();
+
+        input.addEventListener("blur", () => {
+            input.replaceWith(taskName);
+        });
+    });
+
+    // Creating delete button
+    const dltButton = document.createElement("button");
+    dltButton.className = "delete-button";
     dltButton.textContent = "Delete";
-    li.appendChild(dltButton)
+    li.appendChild(dltButton);
 
-    dltButton.addEventListener('click', () => {
-        deleteTaskNode(li, taskObject.id)
-    })
+    dltButton.addEventListener("click", () => {
+        deleteTaskNode(li, taskObject.id);
+    });
 
-    // appending the nodes to the main tree
+    // Append to the task list
     taskList.prepend(li);
 
-    crossTheTask(taskName, taskObject, li)
+    // Apply strike-through if already completed
+    crossTheTask(taskName, taskObject, li);
 }
 
 function deleteTaskNode(taskNode, taskId) {
